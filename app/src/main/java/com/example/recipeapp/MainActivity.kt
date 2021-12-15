@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
                     val author = item.author
                     val instructions = item.instructions
                     val ingredients = item.ingredients
-
+                    Log.d("eeee", "title: $title , author: $author, instructions: $instructions, ingredients: $ingredients")
                     list.add(recipeDataItem(pk, author, ingredients, instructions, title))
                     rvAdapter.notifyDataSetChanged()
                 }
@@ -86,13 +86,13 @@ class MainActivity : AppCompatActivity() {
         author_textbox.hint = "Author"
         layout.addView(author_textbox)
 
-        val instructions = EditText(this)
-        instructions.hint = "Instructions"
-        layout.addView(instructions)
-
         val ingredients = EditText(this)
         ingredients.hint = "Ingredients"
         layout.addView(ingredients)
+
+        val instructions = EditText(this)
+        instructions.hint = "Instructions"
+        layout.addView(instructions)
 
         alert.setView(layout)
 
@@ -105,7 +105,7 @@ class MainActivity : AppCompatActivity() {
             val ingredients = ingredients.text.toString()
             val pk = 0
             if (title.isNotEmpty() && author.isNotEmpty() && instructions.isNotEmpty() && ingredients.isNotEmpty()){
-                Log.d("eeee", "title: $title , author: $author, instructions: $instructions, ingredients: $ingredients")
+                Log.d("ee", "title: $title , author: $author, instructions: $instructions, ingredients: $ingredients")
                 postData(pk, title, author, ingredients, instructions)
                 Toast.makeText(this, "Saved Sucessfully", Toast.LENGTH_LONG).show()}
             else{
@@ -129,6 +129,7 @@ class MainActivity : AppCompatActivity() {
         api?.postData(recipeDataItem(pk, author, ingredients, instructions, title))?.enqueue(object : Callback<recipeDataItem> {
             override fun onResponse(call: Call<recipeDataItem>, response: Response<recipeDataItem>) {
                 getAllData()
+                Log.d("yy", "title: $title , author: $author, instructions: $instructions, ingredients: $ingredients")
                 Toast.makeText(applicationContext, "Add Sucessfully!", Toast.LENGTH_LONG).show()
             }
 

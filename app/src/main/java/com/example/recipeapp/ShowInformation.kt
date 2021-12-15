@@ -3,6 +3,7 @@ package com.example.recipeapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 
@@ -26,6 +27,7 @@ class ShowInformation : AppCompatActivity() {
 
         val disData = intent.getSerializableExtra("displayData") as recipeDataItem
 
+        Log.d("gg", "$disData")
         tvTitle.text = disData.title
         tvAuthor.text = disData.author
         tvIngredients.text = disData.ingredients

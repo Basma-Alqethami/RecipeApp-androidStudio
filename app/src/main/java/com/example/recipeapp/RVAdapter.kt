@@ -1,12 +1,11 @@
 package com.example.recipeapp
 
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.rv_row.view.*
 
@@ -31,7 +30,8 @@ class RVAdapter (private val appContext: Context, private var recipes: ArrayList
             tvTitle.text = recipe.title
             tvAuthor.text = recipe.author
             cardView.setOnClickListener {
-                val recData = recipeDataItem(recipes[position].pk,recipes[position].author, recipes[position].ingredients, recipes[position].instructions,recipes[position].title)
+                val recData = recipeDataItem(recipes[position].pk,recipes[position].author,recipes[position].ingredients,recipes[position].instructions,recipes[position].title)
+                Log.d("gg", "$recData")
                 val intent = Intent(holder.itemView.context,ShowInformation::class.java)
                 intent.putExtra("displayData",recData)
                 holder.itemView.context.startActivity(intent) 
